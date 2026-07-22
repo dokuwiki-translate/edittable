@@ -174,6 +174,10 @@ class action_plugin_edittable_editor extends DokuWiki_Action_Plugin
         for ($row = 0; $row < $rows; $row++) {
             for ($col = 0; $col < $cols; $col++) {
 
+                // hidden cells may carry no span info of their own
+                if (!isset($meta[$row][$col]['colspan'])) $meta[$row][$col]['colspan'] = 1;
+                if (!isset($meta[$row][$col]['rowspan'])) $meta[$row][$col]['rowspan'] = 1;
+
                 // minimum padding according to alignment
                 if (isset($meta[$row][$col]['align']) && $meta[$row][$col]['align'] == 'center') {
                     $lpad = 2;

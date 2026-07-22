@@ -462,7 +462,7 @@ class renderer_plugin_edittable_inverse extends Doku_Renderer {
         }
 
         // still here?
-        if($url === "http://$name" || $url === "ftp://$name") {
+        if(is_string($name) && ($url === "http://$name" || $url === "ftp://$name")) {
             // special case - www.* or ftp.* matching
             $this->doc .= $name;
         } else {
