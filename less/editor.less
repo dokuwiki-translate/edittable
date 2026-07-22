@@ -1,5 +1,3 @@
-
-
 #edittable__editor {
     margin-bottom: 1.4em;
     height: 400px;
@@ -25,6 +23,16 @@
         }
 
     }
+}
+
+// cap runaway column widths
+#edittable__editor td,
+#edittable__editor th,
+.handsontable.htAutoSize td,
+.handsontable.htAutoSize th {
+    max-width: 400px;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .a() when (@ini_site_width) {
