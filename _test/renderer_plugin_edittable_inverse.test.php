@@ -13,6 +13,12 @@ class renderer_plugin_edittable_inverse_test extends DokuWikiTest {
         $this->assertEquals($input, $output);
     }
 
+    function test_bare_externallink() {
+        $input  = 'see http://www.example.com for details';
+        $output = $this->render($input);
+        $this->assertEquals($input, $output);
+    }
+
     function test_fullsyntax() {
         $input = io_readFile(dirname(__FILE__).'/'.basename(__FILE__, '.php').'.txt');
         $this->assertTrue(strlen($input) > 1000); // make sure we got what we want

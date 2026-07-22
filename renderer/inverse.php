@@ -424,7 +424,15 @@ class renderer_plugin_edittable_inverse extends Doku_Renderer {
                     class_exists('\dokuwiki\Parsing\ParserMode\Externallink') &&
                     method_exists('\dokuwiki\Parsing\ParserMode\Externallink', 'getPatterns')
                 ) {
+                    global $conf;
                     $this->extlinkparser = new \dokuwiki\Parsing\ParserMode\Externallink();
+                    // The Externallink mode reads its ModeRegistry in preConnect().
+                    // Provide one when the setter is available.
+                    if(method_exists($this->extlinkparser, 'setModeRegistry')) {
+                        $this->extlinkparser->setModeRegistry(
+                            new \dokuwiki\Parsing\ModeRegistry($conf['syntax'] ?? 'dw')
+                        );
+                    }
                     $this->extlinkparser->preConnect();
                     $this->extlinkPatterns = $this->extlinkparser->getPatterns();
                 } else {
